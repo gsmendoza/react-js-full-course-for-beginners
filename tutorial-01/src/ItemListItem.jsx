@@ -18,7 +18,7 @@ const ItemListItem = ({ items, setItems, item }) => {
   }
 
   return (
-    <li key={item.id} className="item">
+    <li className="item">
       <input
         type="checkbox"
         onChange={() => { handleCheck(item.id)}}

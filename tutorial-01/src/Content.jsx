@@ -8,7 +8,7 @@ const Content = ({ items, setItems }) => {
           <ul>
             {
               items.map((item) => (
-                <ItemListItem items={items} setItems={setItems} item={item} />
+                <ItemListItem items={items} setItems={setItems} item={item} key={item.id} />
               ))
             }
           </ul>
