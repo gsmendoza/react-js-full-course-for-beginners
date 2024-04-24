@@ -1,8 +1,11 @@
+import AddItemForm from './AddItemForm';
 import ItemListItem from './ItemListItem';
 
 const Content = ({ items, setItems }) => {
   return (
     <main>
+      <AddItemForm items={items} setItems={setItems} />
+
       {
         items.length ? (
           <ul>
