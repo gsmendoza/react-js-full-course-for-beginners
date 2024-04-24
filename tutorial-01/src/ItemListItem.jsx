@@ -1,4 +1,5 @@
 import { FaTrashAlt } from 'react-icons/fa';
+import setAndSaveItems from './setAndSaveItems';
 
 const ItemListItem = ({ items, setItems, item }) => {
   const handleCheck = (id) => {
@@ -6,15 +7,13 @@ const ItemListItem = ({ items, setItems, item }) => {
       (item) => item.id === id ? { ...item, checked: !item.checked } : item
     );
 
-    setItems(updatedItems);
-    localStorage.setItem('groceriesList', JSON.stringify(updatedItems));
+    setAndSaveItems({ setItems, updatedItems });
   }
 
   const handleDelete = (id) => {
     const updatedItems = items.filter((item) => item.id !== id);
 
-    setItems(updatedItems);
-    localStorage.setItem('groceriesList', JSON.stringify(updatedItems));
+    setAndSaveItems({ setItems, updatedItems });
   }
 
   return (

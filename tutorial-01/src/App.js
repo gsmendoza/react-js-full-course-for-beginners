@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Content from './Content';
 import Header from './Header';
+import AddItemForm from './AddItemForm';
 import Footer from './Footer';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
   return (
     <div className="App">
       <Header title="Grocery List" />
+      <AddItemForm items={items} setItems={setItems} />
       <Content items={items} setItems={setItems} />
       <Footer itemCount={items.length}/>
     </div>
