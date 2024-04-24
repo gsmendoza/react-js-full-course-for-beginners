@@ -1,29 +1,12 @@
 import { useState } from 'react';
+import ItemsLocalStorage from './ItemsLocalStorage';
 import Content from './Content';
 import Header from './Header';
 import AddItemForm from './AddItemForm';
 import Footer from './Footer';
 
 function App() {
-  const defaultItems = [
-    {
-      id: 1,
-      checked: false,
-      description: 'Nova'
-
-    },
-    {
-      id: 2,
-      checked: false,
-      description: 'Nissin Ramen'
-
-    },
-    {
-      id: 3,
-      checked: false,
-      description: 'Sprite'
-    }
-  ];
+  const defaultItems = ItemsLocalStorage.load();
 
   const [items, setItems] = useState(defaultItems);
 
