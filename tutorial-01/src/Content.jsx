@@ -1,10 +1,12 @@
 import AddItemForm from './AddItemForm';
+import SearchItemsForm from './SearchItemsForm';
 import ItemListItem from './ItemListItem';
 
-const Content = ({ items, setItems }) => {
+const Content = ({ items, setItems, searchParam, setSearchParam }) => {
   return (
     <main>
       <AddItemForm items={items} setItems={setItems} />
+      <SearchItemsForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
       {
         items.length ? (

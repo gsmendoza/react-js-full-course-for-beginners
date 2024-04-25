@@ -9,11 +9,26 @@ function App() {
 
   const [items, setItems] = useState(defaultItems);
 
+  const [searchParam, setSearchParam] = useState('');
+
+  const filteredItems = () => {
+    return items.filter(
+      item => item.description.toLowerCase().includes(searchParam.toLowerCase())
+    );
+  };
+
   return (
     <div className="App">
       <Header title="Grocery List" />
-      <Content items={items} setItems={setItems} />
-      <Footer itemCount={items.length}/>
+
+      <Content
+        items={filteredItems()}
+        setItems={setItems}
+        searchParam={searchParam}
+        setSearchParam={setSearchParam}
+      />
+
+      <Footer itemCount={filteredItems().length}/>
     </div>
   );
 }
