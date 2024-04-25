@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
 import setAndSaveItems from './setAndSaveItems';
 
@@ -19,6 +20,8 @@ const AddItemForm = ({ items, setItems }) => {
     setAndSaveItems({ setItems, updatedItems });
   }
 
+  const AddItemInputRef = useRef();
+
   const handleAdd = (e) => {
     e.preventDefault();
     addNewItem();
@@ -28,8 +31,10 @@ const AddItemForm = ({ items, setItems }) => {
   return (
     <form className='addForm' onSubmit={handleAdd}>
       <label htmlFor='addItem'>Add Item</label>
+
       <input
         autoFocus
+        ref={AddItemInputRef}
         id='addItem'
         type='text'
         placeholder='Add Item'
@@ -37,9 +42,12 @@ const AddItemForm = ({ items, setItems }) => {
         value={newItemDescription}
         onChange={(e) => setNewItemDescription(e.target.value)}
       />
+
       <button
         type='submit'
         aria-label='Add Item'
+        onClick={() => AddItemInputRef.current.focus()}
+
       >
         <FaPlus />
       </button>
