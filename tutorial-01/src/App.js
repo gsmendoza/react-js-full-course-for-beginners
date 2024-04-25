@@ -1,14 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ItemsLocalStorage from './ItemsLocalStorage';
 import Content from './Content';
 import Header from './Header';
 import Footer from './Footer';
 
 function App() {
-  const defaultItems = ItemsLocalStorage.load();
-
-  const [items, setItems] = useState(defaultItems);
-
+  const [items, setItems] = useState([]);
   const [searchParam, setSearchParam] = useState('');
 
   const filteredItems = () => {
@@ -16,6 +13,10 @@ function App() {
       item => item.description.toLowerCase().includes(searchParam.toLowerCase())
     );
   };
+
+  useEffect(() => {
+    setItems(ItemsLocalStorage.load());
+  }, [])
 
   return (
     <div className="App">
