@@ -15,6 +15,10 @@ function App() {
     );
   };
 
+  useEffect(() => {
+    ItemsLocalStorage.save(items);
+  }, [items])
+
   return (
     <div className="App">
       <Header title="Grocery List" />
