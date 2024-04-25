@@ -5,7 +5,8 @@ import Header from './Header';
 import Footer from './Footer';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const defaultItems = ItemsLocalStorage.load();
+  const [items, setItems] = useState(defaultItems);
   const [searchParam, setSearchParam] = useState('');
 
   const filteredItems = () => {
@@ -13,10 +14,6 @@ function App() {
       item => item.description.toLowerCase().includes(searchParam.toLowerCase())
     );
   };
-
-  useEffect(() => {
-    setItems(ItemsLocalStorage.load());
-  }, [])
 
   return (
     <div className="App">

@@ -1,7 +1,7 @@
 const GROCERIES_LIST = 'groceriesList';
 
 const loadItems = () => {
-  return JSON.parse(localStorage.getItem(GROCERIES_LIST));
+  return JSON.parse(localStorage.getItem(GROCERIES_LIST)) || [];
 }
 
 const saveItems = (items) => {
