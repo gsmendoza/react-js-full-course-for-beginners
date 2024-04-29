@@ -1,6 +1,6 @@
 import ItemListItem from './ItemListItem';
 
-const Content = ({ items, setItems, searchParam, setSearchParam }) => {
+const Content = ({ items, setItems, searchParam, setSearchParam, setError }) => {
   return (
     <>
       {
@@ -8,7 +8,7 @@ const Content = ({ items, setItems, searchParam, setSearchParam }) => {
           <ul>
             {
               items.map((item) => (
-                <ItemListItem items={items} setItems={setItems} item={item} key={item.id} />
+                <ItemListItem items={items} setItems={setItems} item={item} key={item.id} setError={setError} />
               ))
             }
           </ul>

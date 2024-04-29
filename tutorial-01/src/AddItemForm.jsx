@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useRef } from 'react';
 import { FaPlus } from 'react-icons/fa';
+import ITEMS_API_URL from './items_api_url';
+import callApi from './callApi';
 import setAndSaveItems from './setAndSaveItems';
 
-const AddItemForm = ({ items, setItems }) => {
+const AddItemForm = ({ items, setItems, setError }) => {
   const [newItemDescription, setNewItemDescription] = useState('');
 
-  const addNewItem = () => {
+  const addNewItem = async () => {
     const id = items.length ? items[items.length - 1].id + 1 : 1;
 
     const newItem = {
@@ -18,6 +20,18 @@ const AddItemForm = ({ items, setItems }) => {
     const updatedItems = [...items, newItem];
 
     setAndSaveItems({ setItems, updatedItems });
+
+    const postOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newItem)
+    }
+
+    const errorMessage = await callApi(ITEMS_API_URL, postOptions);
+
+    if (errorMessage) setError(errorMessage)
   }
 
   const AddItemInputRef = useRef();
@@ -47,7 +61,6 @@ const AddItemForm = ({ items, setItems }) => {
         type='submit'
         aria-label='Add Item'
         onClick={() => AddItemInputRef.current.focus()}
-
       >
         <FaPlus />
       </button>

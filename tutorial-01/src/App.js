@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import ITEMS_API_URL from './items_api_url';
 import ItemsLocalStorage from './ItemsLocalStorage';
 import Content from './Content';
 import Header from './Header';
@@ -7,8 +8,6 @@ import AddItemForm from './AddItemForm';
 import SearchItemsForm from './SearchItemsForm';
 
 function App() {
-  const ITEMS_API_URL = 'http://localhost:3500/items';
-
   const defaultItems = [];
   const [items, setItems] = useState(defaultItems);
   const [searchParam, setSearchParam] = useState('');
@@ -49,7 +48,7 @@ function App() {
       <Header title="Grocery List" />
 
       <main>
-        <AddItemForm items={items} setItems={setItems} />
+        <AddItemForm items={items} setItems={setItems} setError={setError} />
         <SearchItemsForm searchParam={searchParam} setSearchParam={setSearchParam} />
 
         {
@@ -68,6 +67,7 @@ function App() {
                   setItems={setItems}
                   searchParam={searchParam}
                   setSearchParam={setSearchParam}
+                  setError={setError}
                 />
               )
             )
